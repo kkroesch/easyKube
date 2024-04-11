@@ -19,7 +19,12 @@ provider "helm" {
   }
 }
 
+
 module "namespaces" {
   source = "./namespaces"
+}
+
+module "ingress" {
+  source = "./ingress"
 }
 
