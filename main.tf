@@ -12,6 +12,13 @@ provider "kubernetes" {
   config_context = "kind-kind"
 }
 
+provider "helm" {
+  kubernetes {
+    # Inherit from the kubernetes provider
+    config_path = "~/.kube/config"
+  }
+}
+
 module "namespaces" {
   source = "./namespaces"
 }
