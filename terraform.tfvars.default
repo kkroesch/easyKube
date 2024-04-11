@@ -1,0 +1,4 @@
+cloudflare_email   = "deine@email.com"
+cloudflare_api_key = "dein_api_key"
+cloudflare_zone_id = "deine_zone_id"
+
