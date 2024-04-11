@@ -18,7 +18,7 @@ output "ns_name" {
 
 resource "kubernetes_limit_range" "developer" {
   metadata {
-    name = "terraform-example"
+    name = "developer-limit"
     namespace = "developer"
   }
   spec {
