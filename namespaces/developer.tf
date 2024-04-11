@@ -12,9 +12,6 @@ resource "kubernetes_namespace" "developer" {
   }
 }
 
-output "ns_name" {
-  value = kubernetes_namespace.developer.metadata[0].name
-}
 
 resource "kubernetes_limit_range" "developer" {
   metadata {

@@ -19,6 +19,7 @@ provider "helm" {
   }
 }
 
+
 resource "kubernetes_ingress_class" "nginx-ingress" {
   metadata {
     name = "nginx"
@@ -28,7 +29,31 @@ resource "kubernetes_ingress_class" "nginx-ingress" {
   }
 }
 
+
+/*
+ * Namespaces Management
+ */
+
 module "namespaces" {
   source = "./namespaces"
+}
+
+
+data "kubernetes_all_namespaces" "allns" {}
+
+output "all-ns" {
+  value = data.kubernetes_all_namespaces.allns.namespaces
+}
+
+output "ns-present" {
+  value = contains(data.kubernetes_all_namespaces.allns.namespaces, "kube-system")
+}
+
+/*
+ * Storage Management
+ */
+
+module "storage" {
+  source = "./storage"
 }
 

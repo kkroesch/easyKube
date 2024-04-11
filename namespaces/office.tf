@@ -4,9 +4,6 @@ resource "kubernetes_namespace" "office" {
   }
 }
 
-output "ns_office_name" {
-  value = kubernetes_namespace.office.metadata[0].name
-}
 
 resource "kubernetes_limit_range" "office" {
   metadata {
