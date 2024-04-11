@@ -1,25 +1,25 @@
-resource "kubernetes_namespace" "example" {
+resource "kubernetes_namespace" "developer" {
   metadata {
     annotations = {
-      name = "example-annotation"
+      name = "developer-annotation"
     }
 
     labels = {
-      mylabel = "label-value"
+      owner = "Karsten"
     }
 
-    name = "terraform-example-namespace"
+    name = "developer"
   }
 }
 
 output "ns_name" {
-  value = kubernetes_namespace.example.metadata[0].name
+  value = kubernetes_namespace.developer.metadata[0].name
 }
 
-resource "kubernetes_limit_range" "example" {
+resource "kubernetes_limit_range" "developer" {
   metadata {
     name = "terraform-example"
-    namespace = "terraform-example-namespace"
+    namespace = "developer"
   }
   spec {
     limit {
@@ -45,22 +45,22 @@ resource "kubernetes_limit_range" "example" {
   }
 }
 
-resource "kubernetes_ingress_v1" "example" {
+resource "kubernetes_ingress_v1" "developer" {
   metadata {
-    name      = "example-ingress"
-    namespace = "terraform-example-namespace"
+    name      = "developer-ingress"
+    namespace = "developer"
     annotations = {
       "kubernetes.io/ingress.class" = "nginx"
     }
   }
   spec {
     rule {
-      host = "www.example.com"
+      host = "dev.kroesch.net"
       http {
         path {
           backend {
             service {
-              name = "example-service"
+              name = "onedev"
               port {
                 number = 80
               }
