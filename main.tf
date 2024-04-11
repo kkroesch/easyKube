@@ -19,6 +19,15 @@ provider "helm" {
   }
 }
 
+resource "kubernetes_ingress_class" "nginx-ingress" {
+  metadata {
+    name = "nginx"
+  }
+  spec {
+    controller = "k8s.io/ingress-nginx"
+  }
+}
+
 module "namespaces" {
   source = "./namespaces"
 }
